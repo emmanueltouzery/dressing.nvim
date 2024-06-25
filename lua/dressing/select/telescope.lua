@@ -93,6 +93,14 @@ M.select = function(config, items, opts, on_choice)
     picker_opts = themes.get_dropdown()
   end
 
+  vim.api.nvim_create_autocmd("User", {
+    pattern = "TelescopePickerClose",
+    callback = function(args)
+      on_choice(nil, nil)
+    end,
+    once = true,
+  })
+
   local defaults = {
     prompt_title = opts.prompt,
     previewer = false,
